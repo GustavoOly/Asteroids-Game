@@ -2,8 +2,11 @@ package game
 
 import (
 	"fmt"
+	"game/assets"
+	"image/color"
 
 	"github.com/hajimehoshi/ebiten/v2"
+	"github.com/hajimehoshi/ebiten/v2/text"
 )
 
 type Game struct {
@@ -80,6 +83,11 @@ func (g *Game) Draw(screen *ebiten.Image) {
 	for _, m := range g.meteors {
 		m.Draw(screen)
 	}
+	scoreSprite := &ebiten.DrawImageOptions{}
+
+	scoreSprite.GeoM.Translate(60, 450)
+
+	text.Draw(screen, fmt.Sprintf("Points: %d", g.score), assets.FontUi, 20, 100, color.White)
 
 }
 
